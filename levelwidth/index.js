@@ -11,6 +11,26 @@
 // 4       5
 // Answer: [1, 3, 2]
 
-function levelWidth(root) {}
 
-module.exports = levelWidth;
+function levelWidth(root) {
+    const widths = [];
+  
+    function traverse(node, level) {
+      if (widths[level] === undefined) {
+        widths[level] = 0;
+      }
+  
+      widths[level]++;
+  
+      for (let child of node.children) {
+        traverse(child, level + 1);
+      }
+    }
+  
+    traverse(root, 0);
+  
+    return widths;
+  }
+  
+  module.exports = levelWidth;
+  
